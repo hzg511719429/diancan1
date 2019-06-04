@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+
+    <!-- 2.加载所有配置文件 -->
+    <context:property-placeholder location="classpath:resources/*.properties"/>
+    <!-- 1.包扫描controller -->
+    <context:component-scan base-package="com.zknu.shop.module.**.controller"/>
+
+
+    <!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
+    <mvc:annotation-driven>
+        <!-- 消息转换器 -->
+        <mvc:message-converters register-defaults="true">
+            <!--解决response乱码-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- 2.内部资源视图解析器  -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!--这种写法的好处时 ide 有提示-->
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/data/**" location="/data/"/>
+    <mvc:resources mapping="/**/*.html" location="/"/>
+
+    <!-- 定义文件上传解析器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 设定文件上传的最大值100MB-->
+        <property name="maxUploadSize" value="102400000"/>
+    </bean>
+
+
+    <!-- Http messageConverters，用于将对象输出到客户端 -->
+    <bean id="jsonmessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </bean>
+
+    <!-- 异常处理 -->
+    <bean id="handlerExceptionResolver"
+          class="com.zknu.shop.common.exception.ExceptionResolverCustom">
+        <property name="jsonmessageConverter" ref="jsonmessageConverter"/>
+
+    </bean>
+
+
+    <!--配置拦截器 -->
+    <!--<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/regist.html"/>
+            <mvc:exclude-mapping path="/"/>
+            <mvc:exclude-mapping path="/index.html"/>
+            <bean class="com.zknu.shop.common.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+
+
+</beans>

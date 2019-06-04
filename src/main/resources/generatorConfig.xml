@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 制定mysql的驱动包的路径 千万别放中文路径下 -->
+    <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/shop?tinyInt1isBit=false" userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.zknu.shop.common.pojo"
+                            targetProject="./src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.zknu.shop.common.mapper"
+                         targetProject="./src/main/resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.zknu.shop.common.mapper"
+                             targetProject="./src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 指定数据库表-->
+        <table schema="" tableName="ecs_ad"></table>
+        <table schema="" tableName="ecs_ad_position"></table>
+        <table schema="" tableName="ecs_admin_user"></table>
+        <table schema="" tableName="ecs_article"></table>
+        <table schema="" tableName="ecs_article_cat"></table>
+        <table schema="" tableName="ecs_attribute"></table>
+        <table schema="" tableName="ecs_back_action"></table>
+        <table schema="" tableName="ecs_back_goods"></table>
+        <table schema="" tableName="ecs_back_order"></table>
+        <table schema="" tableName="ecs_brand"></table>
+        <table schema="" tableName="ecs_cart"></table>
+        <table schema="" tableName="ecs_category"></table>
+        <table schema="" tableName="ecs_collect_goods"></table>
+        <table schema="" tableName="ecs_comment"></table>
+        <table schema="" tableName="ecs_feedback"></table>
+        <table schema="" tableName="ecs_goods"></table>
+        <table schema="" tableName="ecs_goods_attr"></table>
+        <table schema="" tableName="ecs_goods_gallery"></table>
+        <table schema="" tableName="ecs_goods_type"></table>
+        <table schema="" tableName="ecs_order_action"></table>
+        <table schema="" tableName="ecs_order_goods"></table>
+        <table schema="" tableName="ecs_order_info"></table>
+        <table schema="" tableName="ecs_pay_log"></table>
+        <table schema="" tableName="ecs_products"></table>
+        <table schema="" tableName="ecs_region"></table>
+        <table schema="" tableName="ecs_shop_grade"></table>
+        <table schema="" tableName="ecs_street_category"></table>
+        <table schema="" tableName="ecs_supplier"></table>
+        <table schema="" tableName="ecs_supplier_guanzhu"></table>
+        <table schema="" tableName="ecs_supplier_rebate"></table>
+        <table schema="" tableName="ecs_supplier_rebate_log"></table>
+        <table schema="" tableName="ecs_supplier_street"></table>
+        <table schema="" tableName="ecs_user_address"></table>
+        <table schema="" tableName="ecs_users"></table>
+
+        <table schema="" tableName="ecs_level"></table>
+        <table schema="" tableName="ecs_reward"></table>
+        <table schema="" tableName="ecs_school"></table>
+        <table schema="" tableName="ecs_season_reward"></table>
+        <table schema="" tableName="ecs_subject"></table>
+        <table schema="" tableName="ecs_teach_banji"></table>
+        <table schema="" tableName="ecs_turnplate_history"></table>
+        <table schema="" tableName="ecs_user_sign"></table>
+        <table schema="" tableName="ecs_users_s"></table>
+        <table schema="" tableName="ecs_grade"></table>
+        <table schema="" tableName="ecs_area"></table>
+        <table schema="" tableName="ecs_banji"></table>
+
+    </context>
+</generatorConfiguration>
