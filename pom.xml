@@ -33,7 +33,7 @@
     <jedis.version>2.7.2</jedis.version>
     <solrj.version>4.10.3</solrj.version>
     <freemarker.version>2.3.22</freemarker.version>
-    <jsoup.version>1.8.3</jsoup.version>
+    <jsoup.version>1.14.2</jsoup.version>
   </properties>
   <dependencies>
     <!--本地导入的,支付宝沙盒jar包7个  其他的项目中有-->
